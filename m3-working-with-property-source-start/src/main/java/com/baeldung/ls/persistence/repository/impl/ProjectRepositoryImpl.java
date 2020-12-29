@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import com.baeldung.ls.persistence.model.Project;
@@ -11,6 +12,11 @@ import com.baeldung.ls.persistence.repository.IProjectRepository;
 
 @Repository
 public class ProjectRepositoryImpl implements IProjectRepository {
+
+    @Value("$project.prefix");
+    private String prefix;
+    @Value("$project.suffix")
+    private Integer suffix;
 
     private List<Project> projects = new ArrayList<>();
 
@@ -32,6 +38,10 @@ public class ProjectRepositoryImpl implements IProjectRepository {
             projects.add(newProject);
         }
         return project;
+    }
+
+    private void updateInternalId( Project project) {
+        project.setInternalId();
     }
 
 }

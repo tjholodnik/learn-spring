@@ -12,6 +12,16 @@ public class Project {
 
     private LocalDate dateCreated;
 
+    public String getInternalId() {
+        return internalId;
+    }
+
+    public void setInternalId(String internalId) {
+        this.internalId = internalId;
+    }
+
+    private String internalId;
+
     public Project(Long id, String name, LocalDate dateCreated) {
         if(Objects.isNull(id)) {
             id = new Random().nextLong();
